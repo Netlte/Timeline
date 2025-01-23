@@ -1,0 +1,9 @@
+{varType \Netlte\Timeline\Timeline $control}
+<div n:snippet="content" class="timeline" n:inner-foreach="$control->getComponents() as $item">
+
+	{control $item}
+
+	<div n:if="$iterator->isLast()">
+		<i class="{$icon_prefix}clock-o bg-gray"></i>
+	</div>
+</div>

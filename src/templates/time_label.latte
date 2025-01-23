@@ -1,0 +1,6 @@
+{varType \DateTimeInterface $datetime}
+{varType string $format}
+{varType string $color}
+<div class="time-label">
+	<span class="bg-{$color}">{$datetime|date:$format}</span>
+</div>

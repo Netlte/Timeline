@@ -1,0 +1,57 @@
+{
+	"name": "netlte/timeline",
+	"description": "Timeline component",
+	"keywords": ["timeline", "netlte", "nette"],
+	"type": "library",
+	"license": "MIT",
+  	"homepage": "https://github.com/Netlte/Timeline",
+	"authors": [
+		{
+			"name": "Tomáš Holan",
+		  	"homepage": "https://www.holan.dev"
+		}
+	],
+	"require": {
+		"php": ">=8.3",
+	  	"netlte/ui": "^1.1"
+	},
+	"require-dev": {
+		"nette/application": "^3.1",
+		"nette/tester": "^2.0",
+		"phpstan/extension-installer": "^1.3",
+		"phpstan/phpstan": "^1.10",
+		"phpstan/phpstan-nette": "^1.2",
+		"phpstan/phpstan-strict-rules": "^1.5",
+		"phpstan/phpstan-deprecation-rules": "^1.1",
+		"netlte/coding-standard": "^1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Netlte\\Timeline\\": "src/"
+		}
+	},
+  	"autoload-dev": {
+		"psr-4": {
+			"Netlte\\Timeline\\Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"scripts": {
+		"tests": "tester -s -p php --colors 1 -C tests/Cases",
+		"cs": "phpcs --standard=vendor/netlte/coding-standard/ruleset.xml --extensions=php --tab-width=4 -sp src tests",
+		"cs-fix": "phpcbf --standard=vendor/netlte/coding-standard/ruleset.xml --extensions=php --tab-width=4 -sp src tests",
+		"analyse": "phpstan analyse",
+		"qa": [
+			"@cs",
+			"@analyse",
+			"@tests"
+		]
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		}
+	}
+}
