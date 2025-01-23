@@ -26,13 +26,13 @@ class Item extends AbstractControl {
 
     public string $color = 'blue';
 
-    public ?\DateTime $datetime = null;
+    public ?\DateTimeInterface $datetime = null;
 
 	/** @var HtmlStringable|\Stringable|string|null */
 	private $title = null;
 
 	
-	public function __construct(string $icon = 'circle', string $color = 'blue', ?\DateTime $datetime = null) {
+	public function __construct(string $icon = 'circle', string $color = 'blue', ?\DateTimeInterface $datetime = null) {
 		$this->icon = $icon;
 		$this->color = $color;
 		$this->datetime = $datetime;
