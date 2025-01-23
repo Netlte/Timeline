@@ -37,8 +37,8 @@ class Label extends AbstractControl {
 		$this->getTemplate()->text = $this->getText();
 		$this->getTemplate()->color = $this->color;
 
-		$this->getTemplate()->setTranslator($this->getTranslator() ?? self::$DEFAULT_TEMPLATE);
-		$this->getTemplate()->setFile($this->getTemplateFile());
+		$this->getTemplate()->setTranslator($this->getTranslator());
+		$this->getTemplate()->setFile($this->getTemplateFile() ?? self::$DEFAULT_TEMPLATE);
 		$this->getTemplate()->render();
 	}
 
