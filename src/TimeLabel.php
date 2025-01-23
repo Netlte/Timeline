@@ -16,9 +16,9 @@ class TimeLabel extends AbstractControl {
 
 	public static string $DEFAULT_TEMPLATE = self::DEFAULT_TEMPLATE;
 
-	private \DateTimeInterface $datetime;
-    private string $format;
-	private string $color;
+	public \DateTimeInterface $datetime;
+    public string $format;
+    public string $color;
 
 	
 	public function __construct(\DateTimeInterface $datetime, string $format = 'd.m.Y', string $color = 'red') {
@@ -28,40 +28,13 @@ class TimeLabel extends AbstractControl {
 	}
 
 	public function render(): void {
-		$this->getTemplate()->datetime = $this->getDatetime();
-		$this->getTemplate()->format = $this->getFormat();
-		$this->getTemplate()->color = $this->getColor();;
+		$this->getTemplate()->datetime = $this->datetime;
+		$this->getTemplate()->format = $this->format;
+		$this->getTemplate()->color = $this->color;
 
-		$this->getTemplate()->setTranslator($this->getTranslator() ?? self::$DEFAULT_TEMPLATE);
-		$this->getTemplate()->setFile($this->getTemplateFile());
+		$this->getTemplate()->setTranslator($this->getTranslator());
+		$this->getTemplate()->setFile($this->getTemplateFile()?? self::$DEFAULT_TEMPLATE);
 		$this->getTemplate()->render();
-	}
-
-	public function getDatetime(): \DateTimeInterface {
-		return $this->datetime;
-	}
-
-	public function setDatetime(\DateTimeInterface $datetime): self {
-		$this->datetime = $datetime;
-		return $this;
-	}
-
-    public function getFormat(): string {
-        return $this->format;
-    }
-
-    public function setFormat(string $format): self {
-        $this->format = $format;
-        return $this;
-    }
-
-	public function getColor(): string {
-		return $this->color;
-	}
-
-	public function setColor(string $color): self {
-		$this->color = $color;
-		return $this;
 	}
 
 
