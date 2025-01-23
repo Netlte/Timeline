@@ -45,8 +45,8 @@ class Item extends AbstractControl {
 		$this->getTemplate()->title = $this->getTitle();
 		$this->getTemplate()->icon_prefix = self::$ICON_PREFIX;
 
-		$this->getTemplate()->setTranslator($this->getTranslator() ?? self::$DEFAULT_TEMPLATE);
-		$this->getTemplate()->setFile($this->getTemplateFile());
+		$this->getTemplate()->setTranslator($this->getTranslator());
+		$this->getTemplate()->setFile($this->getTemplateFile() ?? self::$DEFAULT_TEMPLATE);
 		$this->getTemplate()->render();
 	}
 
