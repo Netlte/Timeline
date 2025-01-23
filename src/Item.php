@@ -39,9 +39,9 @@ class Item extends AbstractControl {
 	}
 
 	public function render(): void {
-		$this->getTemplate()->datetime = $this->getDatetime();
-		$this->getTemplate()->icon = $this->getIcon();
-		$this->getTemplate()->color = $this->getColor();
+		$this->getTemplate()->datetime = $this->datetime;
+		$this->getTemplate()->icon = $this->icon;
+		$this->getTemplate()->color = $this->color;
 		$this->getTemplate()->title = $this->getTitle();
 		$this->getTemplate()->icon_prefix = self::$ICON_PREFIX;
 
