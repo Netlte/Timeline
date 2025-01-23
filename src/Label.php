@@ -2,8 +2,10 @@
 
 namespace Netlte\Timeline;
 
+use Netlte\Timeline\Exceptions\InvalidArgumentException;
 use Netlte\UI\AbstractControl;
 use Nette\HtmlStringable;
+use Nette\Utils\Html;
 
 
 /**
@@ -20,19 +22,20 @@ class Label extends AbstractControl {
     /** @var HtmlStringable|\Stringable|string $text */
 	private $text;
 
-	private string $color = 'red';
+	public string $color = 'red';
 
 
     /**
      * @param HtmlStringable|\Stringable|string $text
      */
-	public function __construct($text) {
+	public function __construct($text, string $color = 'red') {
 		$this->text = $text;
+        $this->color = $color;
 	}
 
 	public function render(): void {
 		$this->getTemplate()->text = $this->getText();
-		$this->getTemplate()->color = $this->getColor();;
+		$this->getTemplate()->color = $this->color;
 
 		$this->getTemplate()->setTranslator($this->getTranslator() ?? self::$DEFAULT_TEMPLATE);
 		$this->getTemplate()->setFile($this->getTemplateFile());
@@ -47,17 +50,22 @@ class Label extends AbstractControl {
      * @param HtmlStringable|\Stringable|string $text
      */
 	public function setText($text): self {
-		$this->text = $text;
-		return $this;
-	}
+        if ($text instanceof HtmlStringable || $text instanceof \Stringable || $text === null) {
+            $this->text = $text;
+        } elseif (\is_scalar($text)) {
+            $this->text = (string) $text;
+        } else {
+            throw new InvalidArgumentException(
+                \sprintf(
+                    'Method %s expect Argument 1 as NULL, scalar or %s, %s given.',
+                    __METHOD__,
+                    Html::class,
+                    \is_object($text) ? \get_class($text) : \gettype($text)
+                )
+            );
+        }
 
-	public function getColor(): string {
-		return $this->color;
-	}
-
-	public function setColor(string $color): self {
-		$this->color = $color;
-		return $this;
+        return $this;
 	}
 
 
